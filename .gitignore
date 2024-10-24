@@ -1,0 +1,70 @@
+# Node.js
+node_modules/
+npm-debug.log
+yarn-error.log
+package-lock.json
+yarn.lock
+*.tgz
+
+# Build directories
+build/
+dist/
+out/
+
+# React Native
+# Metro bundler
+# React Native Packager
+.expo/
+.expo-shared/
+*.expo
+
+# Logs
+logs/
+*.log
+*.log.*
+
+# IDEs and Editors
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Java
+# IntelliJ IDEA
+*.iml
+*.ipr
+*.iws
+.idea/
+out/
+target/
+*.class
+*.jar
+*.war
+*.ear
+*.db
+
+# Spring Boot
+*.log
+*.properties
+*.yml
+*.yaml
+*.jar
+*.war
+*.ear
+*.class
+*.log
+
+# Mac OS
+.DS_Store
+
+# Other files
+*.class
+*.jar
+*.war
+*.ear
+
+# Operating System Files
+Thumbs.db
+ehthumbs.db
+Icon?
+Desktop.ini
