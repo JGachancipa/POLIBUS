@@ -28,3 +28,10 @@ npm install "dentro de la carpeta frontend/mobile"
 > npx create-expo-app@latest -> Crear app
 > npx expo start --tunnel
 
+> [!TIP]
+> Eliminar imagenes Docker
+docker system prune -a 
+
+> [!TIP]
+> Subir proyecto docker
+docker-compose up 
