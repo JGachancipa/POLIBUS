@@ -19,6 +19,9 @@ jobs:
           distribution: 'temurin'
           java-version: '21'
 
+      - name: Set permissions for mvnw
+        run: chmod +x backend/mvnw  # Agregar este paso para dar permisos de ejecución
+
       - name: Build the backend
         run: |
           cd backend
