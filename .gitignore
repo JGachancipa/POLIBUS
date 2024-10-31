@@ -46,7 +46,6 @@ target/
 # Spring Boot
 *.log
 *.properties
-*.yml
 *.yaml
 *.jar
 *.war

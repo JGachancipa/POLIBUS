@@ -1,0 +1,29 @@
+version: "3.8"
+services:
+  backend:
+    build: ./backend
+    container_name: polibus-backend
+    ports:
+      - "8081:8080"
+  web:
+    build: ./frontend/web
+    container_name: polibus-web
+    ports:
+      - "3000:3000"
+    stdin_open: true
+    tty: true
+    depends_on:
+      - backend
+  ngrok:
+    image: ngrok/ngrok:latest
+    container_name: ngrok
+    command:
+      - "http"
+      - "http://host.docker.internal:8081"
+      # - "--subdomain=your-subdomain"
+    environment:
+      NGROK_AUTHTOKEN: 2nw1Kn29Fs29uqsSf6k0qF4gi50_3qsEGBn4t7xp4nvig9VsS
+    depends_on:
+      - backend
+    ports:
+      - 4040:4040
