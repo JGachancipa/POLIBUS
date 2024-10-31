@@ -38,6 +38,10 @@ jobs:
           docker build -t ${{ secrets.DOCKER_USERNAME }}/polibus-web:latest ./frontend/web
           docker push ${{ secrets.DOCKER_USERNAME }}/polibus-web:latest
 
+      - name: Install Railway CLI
+        run: |
+          curl -sSL https://railway.app/install.sh | sh
+
       - name: Deploy to Railway
         env:
           RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
