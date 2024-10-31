@@ -1,0 +1,8 @@
+build:
+  docker:
+    web: ./frontend/web  # Ruta al Dockerfile del frontend
+    backend: ./backend    # Ruta al Dockerfile del backend
+
+release:
+  command:
+    - ./migrate.sh        # Comando para ejecutar migraciones, si es necesario
