@@ -1,0 +1,33 @@
+name: Deploy to Docker Hub and Railway
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check out code
+      uses: actions/checkout@v2
+
+    - name: Log in to Docker Hub
+      uses: docker/login-action@v2
+      with:
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+
+    - name: Build and push Docker images
+      run: |
+        docker build -t ${{ secrets.DOCKER_USERNAME }}/polibus-backend ./backend
+        docker build -t ${{ secrets.DOCKER_USERNAME }}/polibus-web ./frontend/web
+        docker push ${{ secrets.DOCKER_USERNAME }}/polibus-backend
+        docker push ${{ secrets.DOCKER_USERNAME }}/polibus-web
+
+    - name: Deploy to Railway
+      uses: railwayapp/railway-action@v1
+      with:
+        project_id: ${{ secrets.RAILWAY_PROJECT_ID }}
+        token: ${{ secrets.RAILWAY_TOKEN }}
