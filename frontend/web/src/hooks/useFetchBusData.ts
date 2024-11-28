@@ -32,7 +32,7 @@ export const useFetchBusData = () => {
 
       try {
         setLoading(true);
-        const response = await fetch("https://polibus-gps-7c20a623a9b4.herokuapp.com/api/v1/gps/all", {
+        const response = await fetch("https://polibug-gps-dcef309899c5.herokuapp.com/api/v1/gps/all", {
           headers: { Authorization: `Bearer ${authToken}` },
         });
 
