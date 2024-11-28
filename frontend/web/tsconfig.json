@@ -7,8 +7,29 @@
     "module": "commonjs",
     "baseUrl": "src",
     "paths": {
-      "@/*": [
-        "./*"
+      "@components/*": [
+        "components/*"
+      ],
+      "@styles/*":[
+        "styles/*"
+      ],
+      "@utils/*":[
+        "utils/*"
+      ],
+      "@containers/*":[
+        "containers/*"
+      ],
+      "@config/*":[
+        "config/*"
+      ],
+      "@assets/*":[
+        "assets/*"
+      ],
+      "@hooks/*":[
+        "hooks/*"
+      ],
+      "@context/*":[
+        "context/*"
       ]
     },
     "esModuleInterop": true,

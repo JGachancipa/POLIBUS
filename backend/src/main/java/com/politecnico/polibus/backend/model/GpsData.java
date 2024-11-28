@@ -1,17 +1,29 @@
 package com.politecnico.polibus.backend.model;
 
+import java.time.LocalDateTime;
+
 public class GpsData {
+    private int id;
     private double latitude;
     private double longitude;
-    private double altitude;
-
+    private LocalDateTime lastUpdate;
+    
     public GpsData() {
     }
 
-    public GpsData(double latitude, double longitude, double altitude) {
+    public GpsData(int id, double latitude, double longitude) {
+        this.id = id;
         this.latitude = latitude;
         this.longitude = longitude;
-        this.altitude = altitude;
+        this.lastUpdate = LocalDateTime.now();;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public double getLatitude() {
@@ -30,11 +42,11 @@ public class GpsData {
         this.longitude = longitude;
     }
 
-    public double getAltitude() {
-        return altitude;
+    public LocalDateTime getLastUpdate() {
+        return lastUpdate;
     }
 
-    public void setAltitude(double altitude) {
-        this.altitude = altitude;
+    public void setLastUpdate(LocalDateTime lastUpdate) {
+        this.lastUpdate = lastUpdate;
     }
 }
