@@ -16,12 +16,16 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '16'
+          node-version: '18'  # Actualizado a Node.js 18
+
+      - name: Install dependencies
+        run: |
+          cd frontend/web
+          npm install
 
       - name: Build the frontend
         run: |
           cd frontend/web
-          npm install
           npm run build
 
       - name: Deploy to Heroku
