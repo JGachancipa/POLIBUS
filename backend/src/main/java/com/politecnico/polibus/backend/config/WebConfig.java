@@ -1,4 +1,4 @@
-package com.politecnico.polibus.backend.config;
+package com.politecnico.operacionales.api.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
@@ -12,7 +12,7 @@ public class WebConfig implements WebMvcConfigurer {
     private static final String[] ALLOWED_HEADERS = {"Authorization", "Content-Type", "Accept"};
 
     @Override
-    public void addCorsMappings(@SuppressWarnings("null") CorsRegistry registry) {
+    public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/api/**")
                 .allowedOrigins(ALLOWED_ORIGIN)
                 .allowedMethods(ALLOWED_METHODS)
