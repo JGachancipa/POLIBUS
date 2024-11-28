@@ -20,8 +20,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
                 const response = await fetch('https://polibug-gps-dcef309899c5.herokuapp.com/api/auth/login', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(credentials),
-                    credentials: 'include'
+                    body: JSON.stringify(credentials)
                 });
 
                 if (!response.ok) {
