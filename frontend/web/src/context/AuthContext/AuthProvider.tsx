@@ -17,7 +17,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     useEffect(() => {
         const fetchAuthToken = async () => {
             try {
-                const response = await fetch('https://polibus-gps-7c20a623a9b4.herokuapp.com/api/auth/login', {
+                const response = await fetch('https://polibug-gps-dcef309899c5.herokuapp.com/api/auth/login', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(credentials),
