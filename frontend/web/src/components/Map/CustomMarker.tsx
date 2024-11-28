@@ -22,7 +22,7 @@ export const CustomMarker: React.FC<CustomMarkerProps> = ({
         () => ReactDOMServer.renderToStaticMarkup(
             <TablerBus style={{ position: 'absolute', width: '24px', height: '24px', color: 'red' }} />
         ),
-        [id]
+        []
     );
 
     useEffect(() => {
