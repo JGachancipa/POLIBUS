@@ -26,12 +26,12 @@ jobs:
 
       - name: Set Heroku Buildpack
         run: |
-          heroku buildpacks:set heroku/java --app polibus-gps
+          heroku buildpacks:set heroku/java --app polibug-gps
 
       - name: Deploy to Heroku
         uses: akhileshns/heroku-deploy@v3.12.12
         with:
           heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
-          heroku_app_name: polibus-gps
+          heroku_app_name: polibug-gps
           heroku_email: juanseb.gav02@gmail.com
           appdir: ./backend
