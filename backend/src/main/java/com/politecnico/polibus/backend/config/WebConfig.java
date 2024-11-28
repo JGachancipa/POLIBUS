@@ -9,7 +9,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class WebConfig implements WebMvcConfigurer {
 
     private static final String ALLOWED_ORIGINS = "https://polibus-front-b2195b1b644b.herokuapp.com";
-    private static final String[] ALLOWED_METHODS = {"GET", "POST"};
+    private static final String[] ALLOWED_METHODS = {"GET", "POST", "OPTIONS"};
     private static final String[] ALLOWED_HEADERS = {"Authorization", "Content-Type", "Accept"};
     
     @Override
