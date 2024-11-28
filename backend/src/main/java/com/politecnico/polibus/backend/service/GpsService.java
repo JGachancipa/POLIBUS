@@ -5,6 +5,7 @@ import java.util.List;
 import com.politecnico.polibus.backend.model.GpsData;
 
 public interface GpsService {
-    void saveGpsData(GpsData gpsData);
+    void removeInactiveDevices();
     List<GpsData> getAllGpsData();
+    void saveOrUpdateGpsData(List<GpsData> gpsData);
 }
