@@ -27,29 +27,26 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        return createSecurityFilterChain(http, false);
+        http
+            .cors(cors -> cors.configurationSource(corsConfigurationSource())) // Habilitar CORS
+            .csrf(csrf -> csrf.disable()) // Deshabilitar CSRF
+            .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)) // Stateless para JWT
+            .authorizeHttpRequests(auth -> {
+                auth.requestMatchers("/api/auth/login", "/api/auth/register", "/api/public/**").permitAll() // Rutas públicas
+                    .anyRequest().authenticated(); // Rutas protegidas
+            })
+            .addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class); // Filtro JWT
+
+        return http.build();
     }
 
     @Bean
     @Profile("test")
     public SecurityFilterChain testSecurityFilterChain(HttpSecurity http) throws Exception {
-        return createSecurityFilterChain(http, true);
-    }
-
-    private SecurityFilterChain createSecurityFilterChain(HttpSecurity http, boolean isTestProfile) throws Exception {
         http
             .cors(cors -> cors.configurationSource(corsConfigurationSource()))
             .csrf(csrf -> csrf.disable())
-            .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-            .authorizeHttpRequests(auth -> {
-                if (isTestProfile) {
-                    auth.anyRequest().permitAll();
-                } else {
-                    auth.requestMatchers("/api/auth/login").permitAll()
-                        .anyRequest().authenticated();
-                }
-            })
-            .addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
+            .authorizeHttpRequests(auth -> auth.anyRequest().permitAll()); // Todo permitido en pruebas
 
         return http.build();
     }
@@ -57,11 +54,15 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(Collections.singletonList("http://localhost:3000"));
-        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "OPTIONS"));
-        configuration.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type", "Accept"));
-        configuration.setAllowCredentials(true);
-        
+        configuration.setAllowedOrigins(Arrays.asList(
+            "https://polibus-front-b2195b1b644b.herokuapp.com", // Frontend en producción
+            "http://localhost:3000" // Frontend en desarrollo
+        ));
+        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS")); // Métodos permitidos
+        configuration.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type", "Accept")); // Encabezados permitidos
+        configuration.setAllowCredentials(true); // Permitir credenciales
+        configuration.setExposedHeaders(Arrays.asList("Authorization")); // Exponer encabezados necesarios
+
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
         return source;
